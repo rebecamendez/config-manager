@@ -1,0 +1,10 @@
+{
+  "name": "config-manager",
+  "packageManager": "yarn@3.6.4",
+  "scripts": {
+    "start:services": "docker compose up -d"
+  },
+  "workspaces": [
+    "src/api"
+  ]
+}

@@ -1,2 +1,3 @@
-# config-management
+# config-manager
+
 A demo project

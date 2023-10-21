@@ -1,0 +1,26 @@
+# OSX
+.DS_Store
+
+# IDE: Idea
+.idea
+.run
+
+# Dependencies
+node_modules
+
+# Tests
+coverage
+
+# Config
+.env
+
+# Put your private notes inside this folder
+.info
+
+# Yarn 3 files
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

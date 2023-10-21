@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16
+    container_name: config_manager_database
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: config_manager_db
+
+    ports:
+      - "5432:5432"
+    networks:
+      - config-manager-network
+
+networks:
+  config-manager-network:
+    driver: bridge
