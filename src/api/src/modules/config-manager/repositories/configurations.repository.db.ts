@@ -1,16 +1,16 @@
+import { ConfigurationEntity } from 'modules/shared/database/entities/configuration.entity';
 import { Configuration } from '../domain/configuration';
 import { ConfigurationsRepository } from './configurations.repository';
-import { ConfigurationEntity } from './entities/configuration.entity';
 import { ConfigurationEntityMapper } from './mappers/configuration-entity.mapper';
+import { DataSource } from 'typeorm';
 
-// TODO: implement database connection
 export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
-  public constructor() {}
+  public constructor(private readonly dataSource: DataSource) {}
   public async getConfigurations(): Promise<Configuration[]> {
-    const entity = new ConfigurationEntity();
-    entity.name = 'foo';
-    entity.value = 'bar';
-    const entities = [entity];
-    return entities.map(ConfigurationEntityMapper.toDomain);
+    const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
+    const configurations = await configurationsRepository.find({
+      order: { name: 'ASC' }
+    });
+    return configurations.map(ConfigurationEntityMapper.toDomain);
   }
 }

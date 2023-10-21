@@ -3,8 +3,8 @@
 exports[`A Configurations db repository should get the configurations using the repository 1`] = `
 [
   Configuration {
-    "name": "foo",
-    "value": "bar",
+    "name": "MyConfig",
+    "value": "myValue",
   },
 ]
 `;

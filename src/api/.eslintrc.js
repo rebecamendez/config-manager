@@ -32,5 +32,14 @@ module.exports = {
     'no-return-await': 'error',
     'no-process-env': 'error',
     'check-file/filename-naming-convention': ['error', { '**/*.{js,ts}': 'KEBAB_CASE' }, { ignoreMiddleExtensions: true }]
-  }
+  },
+  overrides: [
+    {
+      files: ['src/migrations/**/*'],
+      rules: {
+        'check-file/filename-naming-convention': 'off',
+        '@typescript-eslint/explicit-member-accessibility': 'off'
+      }
+    }
+  ]
 };
