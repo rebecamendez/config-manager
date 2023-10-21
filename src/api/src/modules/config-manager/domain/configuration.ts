@@ -1,4 +1,4 @@
-export class Config {
+export class Configuration {
   public constructor(
     public name: string,
     public value: string

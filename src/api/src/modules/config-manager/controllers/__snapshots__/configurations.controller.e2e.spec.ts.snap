@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`A Configurations controller (e2e) should return configurations 1`] = `
+[
+  {
+    "name": "foo",
+    "value": "bar",
+  },
+]
+`;
