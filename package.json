@@ -2,6 +2,7 @@
   "name": "config-manager",
   "packageManager": "yarn@3.6.4",
   "scripts": {
+    "install:ci": "yarn install --immutable",
     "start:services": "docker compose up -d"
   },
   "workspaces": [
