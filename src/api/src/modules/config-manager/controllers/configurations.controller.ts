@@ -2,7 +2,9 @@ import { Controller, Get } from '@nestjs/common';
 import { ConfigurationsService } from '../services/configurations.service';
 import { ConfigurationResponse } from 'api-contract/configuration.response';
 import { ConfigurationsResponseMapper } from './mappers/configuration-response.mapper';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('configuration')
 @Controller('/configurations')
 export class ConfigurationsController {
   public constructor(private readonly configurationService: ConfigurationsService) {}
