@@ -1,4 +1,3 @@
-import e from 'express';
 import { Configuration } from '../domain/configuration';
 import { ConfigurationsRepository } from './configurations.repository';
 import { ConfigurationEntity } from './entities/configuration.entity';
