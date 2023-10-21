@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "📡 api",
+      "path": "src/api"
+    },
+    {
+      "name": "🖥️ front",
+      "path": "src/front"
+    },
+    {
+      "name": "👑 /",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": false,
+      "source.fixAll.eslint": true
+    }
+  }
+}
