@@ -37,6 +37,9 @@ jobs:
       - name: Install dependencies
         run: yarn install:ci
 
+      - name: generate .env file
+        run: yarn workspace api generate:env
+
       - name: lint
         run: yarn workspace api lint
 
@@ -45,3 +48,8 @@ jobs:
 
       - name: test
         run: yarn workspace api test
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: src/api/coverage/lcov-report
