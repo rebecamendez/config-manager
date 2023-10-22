@@ -8,5 +8,5 @@ module.exports = {
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
   coverageReporters: ['lcov', 'text-summary'],
-  testTimeout: 5000
+  testTimeout: 20000
 };

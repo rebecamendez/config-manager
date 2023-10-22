@@ -26,6 +26,7 @@ describe('A Configurations db repository', () => {
       password: 'the-password',
       database: databaseName,
       entities,
+      migrations: [],
       synchronize: false,
       logging: false
     });
