@@ -7,5 +7,6 @@ module.exports = {
   collectCoverageFrom: ['**/*.ts', '!main.ts'],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
-  coverageReporters: ['lcov', 'text-summary']
+  coverageReporters: ['lcov', 'text-summary'],
+  testTimeout: 5000
 };
