@@ -13,6 +13,7 @@
     "test": "jest --coverage --silent",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "check-deps": "dependency-cruiser -m src",
     "db:migration:create": "typeorm migration:generate migration:create",
     "db:migration:generate": "node --loader ts-node/esm ../../node_modules/.bin/typeorm migration:generate -d ./src/modules/shared/database/database.typeorm.datasource.ts",
     "db:migrate": "node --loader ts-node/esm ../../node_modules/.bin/typeorm migration:run -d ./src/modules/shared/database/database.typeorm.datasource.ts"
@@ -25,6 +26,7 @@
     "@nestjs/swagger": "7.1.13",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.0",
+    "dotenv": "16.3.1",
     "express-http-context": "1.2.4",
     "nest-winston": "1.9.4",
     "pg": "8.11.3",
@@ -45,6 +47,7 @@
     "@types/uuid": "9.0.6",
     "@typescript-eslint/eslint-plugin": "6.8.0",
     "@typescript-eslint/parser": "6.8.0",
+    "dependency-cruiser": "15.0.0",
     "eslint": "8.52.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-check-file": "2.6.2",
