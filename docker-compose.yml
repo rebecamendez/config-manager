@@ -4,10 +4,8 @@ services:
   db:
     image: postgres:16
     container_name: config_manager_database
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: config_manager_db
+    env_file:
+      - ./src/api/.env
 
     ports:
       - "5432:5432"

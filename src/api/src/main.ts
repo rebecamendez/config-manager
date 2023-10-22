@@ -4,13 +4,15 @@ import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { WinstonModule } from 'nest-winston';
 import { winstonLoggerOptions } from 'utils/logger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap(): Promise<void> {
-  const port = 3000;
-
   const app = await NestFactory.create(AppModule, {
     logger: WinstonModule.createLogger(winstonLoggerOptions)
   });
+
+  const configService = app.get(ConfigService);
+  const port = configService.getOrThrow<number>('PORT');
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('ConfigManager API')

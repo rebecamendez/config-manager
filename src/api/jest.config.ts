@@ -4,7 +4,7 @@ module.exports = {
   modulePaths: ['<rootDir>'],
   testRegex: '.*\\.spec\\.ts$',
   transform: { '.+\\.(t|j)s$': ['ts-jest', { isolatedModules: true }] },
-  collectCoverageFrom: ['**/*.ts', '!main.ts'],
+  collectCoverageFrom: ['**/*.ts', '!main.ts', '!migrations/**'],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
   coverageReporters: ['lcov', 'text-summary'],
