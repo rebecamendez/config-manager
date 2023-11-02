@@ -5,12 +5,36 @@ module.exports = {
       name: 'api-contract-no-autocontained',
       severity: 'error',
       comment: 'This folder must be autocontained',
-      from: {
-        path: 'src/api-contract'
-      },
-      to: {
-        pathNot: ['src/api-contract']
-      }
+      from: { path: ['src/api-contract'] },
+      to: { pathNot: ['src/api-contract'] }
+    },
+    {
+      name: 'shared-database-module-no-autocontained',
+      severity: 'error',
+      comment: 'This folder must be autocontained',
+      from: { path: ['src/modules/shared/database'] },
+      to: { pathNot: ['src/modules/shared/database', 'node_modules'] }
+    },
+    {
+      name: 'config-manager-module-forbidden-imports',
+      severity: 'error',
+      comment: 'This folder must be autocontained',
+      from: { path: ['src/modules/config-manager'] },
+      to: { path: ['src/modules/graceful-shutdown', 'src/modules/root'] }
+    },
+    {
+      name: 'root-module-forbidden-imports',
+      severity: 'error',
+      comment: 'This folder must be autocontained',
+      from: { path: ['src/modules/root'] },
+      to: { path: ['src/modules/graceful-shutdown', 'src/modules/config-manager'] }
+    },
+    {
+      name: 'graceful-shutdown-module-forbidden-imports',
+      severity: 'error',
+      comment: 'This folder must be autocontained',
+      from: { path: ['src/modules/graceful-shutdown'] },
+      to: { path: ['src/modules/root', 'src/modules/config-manager'] }
     },
     // --- The rules below are generated from the initial configuration.
     {
