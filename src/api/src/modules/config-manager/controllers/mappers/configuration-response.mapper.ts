@@ -4,7 +4,7 @@ import { Configuration } from '../../domain/configuration';
 export class ConfigurationsResponseMapper {
   public static toResponse(configuration: Configuration): ConfigurationResponse {
     const response = new ConfigurationResponse();
-    response.name = configuration.name;
+    response.key = configuration.key;
     response.value = configuration.value;
     return response;
   }

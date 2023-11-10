@@ -3,7 +3,7 @@
 exports[`A Configurations controller (e2e) should return configurations 1`] = `
 [
   {
-    "name": "MyConfig",
+    "key": "MyConfig",
     "value": "myValue",
   },
 ]

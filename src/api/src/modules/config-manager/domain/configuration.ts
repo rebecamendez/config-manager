@@ -1,9 +1,9 @@
 export class Configuration {
   public constructor(
-    public name: string,
+    public key: string,
     public value: string
   ) {
-    this.name = name;
+    this.key = key;
     this.value = value;
   }
 }

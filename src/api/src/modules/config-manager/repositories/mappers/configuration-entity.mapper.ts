@@ -3,6 +3,6 @@ import { Configuration } from '../../domain/configuration';
 
 export class ConfigurationEntityMapper {
   public static toDomain(entity: ConfigurationEntity): Configuration {
-    return new Configuration(entity.name, entity.value);
+    return new Configuration(entity.key, entity.value);
   }
 }
