@@ -13,4 +13,11 @@ export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
     });
     return configurations.map(ConfigurationEntityMapper.toDomain);
   }
+
+  public async createConfiguration(createCommand: Configuration): Promise<Configuration> {
+    const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
+    const configurationEntity = await configurationsRepository.create(createCommand);
+    const configuration = await configurationsRepository.save(configurationEntity);
+    return ConfigurationEntityMapper.toDomain(configuration);
+  }
 }

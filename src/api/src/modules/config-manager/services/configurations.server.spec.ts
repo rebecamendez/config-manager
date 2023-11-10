@@ -20,4 +20,13 @@ describe('A Configurations service', () => {
 
     expect(result).toStrictEqual(expectedConfigurations);
   });
+
+  it('should create a configurations using the repository', async () => {
+    const configuration = createMockedConfiguration();
+
+    configurationsRepository.createConfiguration.calledWith(configuration).mockResolvedValue(configuration);
+
+    const result = await service.createConfiguration(configuration);
+    expect(result).toStrictEqual(configuration);
+  });
 });

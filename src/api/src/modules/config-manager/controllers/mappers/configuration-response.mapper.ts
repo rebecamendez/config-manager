@@ -1,7 +1,7 @@
 import { ConfigurationResponse } from 'api-contract/configuration.response';
 import { Configuration } from '../../domain/configuration';
 
-export class ConfigurationsResponseMapper {
+export class ConfigurationResponseMapper {
   public static toResponse(configuration: Configuration): ConfigurationResponse {
     const response = new ConfigurationResponse();
     response.key = configuration.key;

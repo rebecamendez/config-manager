@@ -6,7 +6,7 @@ module.exports = {
       severity: 'error',
       comment: 'This folder must be autocontained',
       from: { path: ['src/api-contract'] },
-      to: { pathNot: ['src/api-contract'] }
+      to: { pathNot: ['src/api-contract', 'node_modules'] }
     },
     {
       name: 'shared-database-module-no-autocontained',

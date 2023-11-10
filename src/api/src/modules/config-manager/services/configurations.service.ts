@@ -9,4 +9,9 @@ export class ConfigurationsService {
   public async getConfigurations(): Promise<Configuration[]> {
     return this.configurationsRepository.getConfigurations();
   }
+
+  // TODO: check if config exists and add creation & updated date
+  public async createConfiguration(createCommand: Configuration): Promise<Configuration> {
+    return this.configurationsRepository.createConfiguration(createCommand);
+  }
 }

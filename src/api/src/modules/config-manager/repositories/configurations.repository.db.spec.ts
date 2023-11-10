@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { GenericContainer, StartedTestContainer } from 'testcontainers';
 import { ConfigurationsRepositoryDb } from './configurations.repository.db';
+import { createMockedConfiguration } from '../tests/mocks/configurations.mocks';
 
 describe('A Configurations db repository', () => {
   let dataSource: DataSource;
@@ -46,6 +47,12 @@ describe('A Configurations db repository', () => {
 
   it('should get the configurations using the repository', async () => {
     const result = await repository.getConfigurations();
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should create a configuration using the repository', async () => {
+    const configuration = createMockedConfiguration();
+    const result = await repository.createConfiguration(configuration);
     expect(result).toMatchSnapshot();
   });
 });

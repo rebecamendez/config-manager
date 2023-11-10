@@ -13,12 +13,23 @@ describe('A Configurations controller', () => {
 
   it('should get the configurations using the service', async () => {
     const expectedConfigurations = [createMockedConfiguration()];
-    const expectedCompaniesResponse = [createMockedConfigurationResponse()];
+    const expectedConfigurationsResponse = [createMockedConfigurationResponse()];
 
     configurationsService.getConfigurations.calledWith().mockResolvedValue(expectedConfigurations);
 
     const result = await controller.getConfigurations();
 
-    expect(result).toMatchObject(expectedCompaniesResponse);
+    expect(result).toMatchObject(expectedConfigurationsResponse);
+  });
+
+  it('should create a configuration using the service', async () => {
+    const configuration = createMockedConfiguration();
+    const expectedConfigurationsResponse = createMockedConfigurationResponse();
+
+    configurationsService.createConfiguration.calledWith(expect.objectContaining(configuration)).mockResolvedValue(configuration);
+
+    const result = await controller.createConfiguration(configuration);
+
+    expect(result).toMatchObject(expectedConfigurationsResponse);
   });
 });
