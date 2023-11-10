@@ -1,4 +1,4 @@
-## 🧐 Quick context
+## 💡 Quick context
 
 - Ticket:
 
@@ -8,10 +8,10 @@ Explain in a **few words** your changes.
 
 Steps to perform a manual test to verify these changes
 
+## 🚨 Breaking changes (optional)
+
+New env vars? New migrations? ...
+
 ## 📝 Detail of changes (optional)
 
 Explain your changes in detail (diagrams, etc..)
-
-## 🚨 Breaking changes (optional)
-
-New env vars? New dependencies? ...
