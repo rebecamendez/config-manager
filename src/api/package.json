@@ -17,7 +17,8 @@
     "db:migration:create": "typeorm migration:generate migration:create",
     "db:migration:generate": "node --loader ts-node/esm ../../node_modules/.bin/typeorm migration:generate -d ./src/modules/shared/database/database.typeorm.datasource.ts",
     "db:migrate": "node --loader ts-node/esm ../../node_modules/.bin/typeorm migration:run -d ./src/modules/shared/database/database.typeorm.datasource.ts",
-    "generate:env": "cp .env.example .env"
+    "generate:env": "cp .env.example .env",
+    "clean": "rm -rf node_modules dist coverage"
   },
   "dependencies": {
     "@nestjs/common": "10.2.8",
