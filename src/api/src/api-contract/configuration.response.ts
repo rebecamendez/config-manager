@@ -1,4 +1,4 @@
 export class ConfigurationResponse {
-  public name: string;
+  public key: string;
   public value: string;
 }

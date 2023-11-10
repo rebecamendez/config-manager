@@ -9,7 +9,7 @@ export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
   public async getConfigurations(): Promise<Configuration[]> {
     const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
     const configurations = await configurationsRepository.find({
-      order: { name: 'ASC' }
+      order: { key: 'ASC' }
     });
     return configurations.map(ConfigurationEntityMapper.toDomain);
   }
