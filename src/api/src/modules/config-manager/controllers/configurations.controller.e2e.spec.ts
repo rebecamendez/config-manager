@@ -7,6 +7,7 @@ import { setupNestApp } from '../../../main.setup';
 import { GenericContainer, StartedTestContainer } from 'testcontainers';
 import { DATA_SOURCE } from 'modules/shared/database/database.providers';
 import { DataSource } from 'typeorm';
+import { createMockedConfiguration } from '../tests/mocks/configurations.mocks';
 
 describe('A Configurations controller (e2e)', () => {
   let app: INestApplication;
@@ -60,6 +61,13 @@ describe('A Configurations controller (e2e)', () => {
   it('should return configurations', async () => {
     const response = await request(app.getHttpServer()).get('/configurations').send();
     expect(response.status).toBe(200);
+    expect(response.body).toMatchSnapshot();
+  });
+
+  it('should create a configuration', async () => {
+    const configuration = createMockedConfiguration();
+    const response = await request(app.getHttpServer()).post('/configurations').send(configuration);
+    expect(response.status).toBe(201);
     expect(response.body).toMatchSnapshot();
   });
 });

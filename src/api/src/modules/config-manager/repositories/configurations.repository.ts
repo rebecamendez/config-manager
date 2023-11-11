@@ -1,5 +1,6 @@
-import { Configuration } from "../domain/configuration";
+import { Configuration } from '../domain/configuration';
 
 export interface ConfigurationsRepository {
-    getConfigurations(): Promise<Configuration[]>;
-  }
+  getConfigurations(): Promise<Configuration[]>;
+  createConfiguration(createCommand: Configuration): Promise<Configuration>;
+}
