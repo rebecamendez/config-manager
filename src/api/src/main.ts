@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { WinstonModule } from 'nest-winston';
 import { winstonLoggerOptions } from 'utils/logger';
 import { ConfigService } from '@nestjs/config';
+import { setupNestApp } from 'main.setup';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
@@ -21,6 +22,7 @@ async function bootstrap(): Promise<void> {
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, swaggerDocument);
 
+  setupNestApp(app);
   await app.listen(port);
   Logger.log(`🚀 ConfigManager API start listening on the port: ${port}`);
 }

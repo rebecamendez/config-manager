@@ -5,6 +5,7 @@ import { HttpLoggerMiddleware } from 'middlewares/http-logger/http-logger.middle
 import { AddContextMiddleware } from 'middlewares/add-context/add-context.middleware';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from 'env/env.validation';
+import { GracefulShutdownModule } from 'modules/graceful-shutdown/graceful-shutdown.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { validate } from 'env/env.validation';
       validate
     }),
     RootModule,
+    GracefulShutdownModule,
     ConfigManagerModule
   ]
 })
