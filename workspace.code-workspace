@@ -19,6 +19,6 @@
       "source.organizeImports": false,
       "source.fixAll.eslint": true
     },
-    "jest.disabledWorkspaceFolders": ["🖥️ front"]
+    "jestrunner.jestPath": "${workspaceFolder}/../../node_modules/jest/bin/jest.js"
   }
 }

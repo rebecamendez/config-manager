@@ -1,12 +1,14 @@
 {
   "name": "config-manager",
   "packageManager": "yarn@3.6.4",
+  "private": true,
   "scripts": {
     "install:ci": "yarn install --immutable",
     "start:services": "docker compose up -d",
     "clean": "yarn workspaces foreach -A run clean && rm -rf node_modules"
   },
   "workspaces": [
-    "src/api"
+    "src/api",
+    "src/front"
   ]
 }

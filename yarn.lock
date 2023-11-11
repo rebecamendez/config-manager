@@ -4615,6 +4615,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"front@workspace:src/front":
+  version: 0.0.0-use.local
+  resolution: "front@workspace:src/front"
+  languageName: unknown
+  linkType: soft
+
 "fs-constants@npm:^1.0.0":
   version: 1.0.0
   resolution: "fs-constants@npm:1.0.0"
