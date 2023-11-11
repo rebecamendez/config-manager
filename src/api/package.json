@@ -21,7 +21,8 @@
     "test:check-types": "tsc --build tsconfig.spec.json --pretty",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:watch": "jest --watch",
-    "test": "yarn test:check-types && jest --coverage --silent"
+    "test": "yarn test:check-types && jest --coverage --silent",
+    "test:coverage": "jest --config jest-coverage.config.ts --coverage --silent"
   },
   "dependencies": {
     "@nestjs/common": "10.2.8",
