@@ -8,9 +8,11 @@
       "type": "node",
       "request": "launch",
       "name": "Debug API",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/src/modules/shared/database/database.typeorm.datasource.ts",
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+      "args": ["${workspaceFolder}/src/main.ts"],
+      "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**", "${workspaceFolder}/../**"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register"],
+      "autoAttachChildProcesses": true,
+      "console": "integratedTerminal"
     }
   ]
 }

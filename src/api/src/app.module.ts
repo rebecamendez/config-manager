@@ -4,7 +4,7 @@ import { RootModule } from './modules/root/root.module';
 import { HttpLoggerMiddleware } from 'middlewares/http-logger/http-logger.middleware';
 import { AddContextMiddleware } from 'middlewares/add-context/add-context.middleware';
 import { ConfigModule } from '@nestjs/config';
-import { validate } from 'env.validation';
+import { validate } from 'env/env.validation';
 
 @Module({
   imports: [
