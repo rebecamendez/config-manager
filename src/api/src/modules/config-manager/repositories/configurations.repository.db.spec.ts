@@ -1,7 +1,9 @@
-import { DataSource, EntityNotFoundError } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { GenericContainer, StartedTestContainer } from 'testcontainers';
 import { ConfigurationsRepositoryDb } from './configurations.repository.db';
 import { createMockedConfiguration } from '../tests/mocks/configurations.mocks';
+import { EntityNotFoundError } from 'modules/shared/database/errors/entity-already-exists.error';
+import { EntityAlreadyExistsError } from 'modules/shared/database/errors/entity-not-found.error copy';
 
 describe('A Configurations db repository', () => {
   let dataSource: DataSource;
@@ -51,14 +53,14 @@ describe('A Configurations db repository', () => {
   });
 
   it('should get a configuration using the repository', async () => {
-    const result = await repository.getConfiguration('MyConfig');
+    const result = await repository.getConfiguration('my-config');
     expect(result).toMatchSnapshot();
   });
 
   it('should throw an error trying to retrieve a not existent configuration using the repository', async () => {
     await expect(async () => {
-      await repository.getConfiguration('MyConfigNotFound');
-    }).rejects.toThrow(EntityNotFoundError);
+      await repository.getConfiguration('my-configNotFound');
+    }).rejects.toThrow(new EntityNotFoundError('Configuration with key: my-configNotFound not found'));
   });
 
   it('should create a configuration using the repository', async () => {
@@ -67,12 +69,19 @@ describe('A Configurations db repository', () => {
     expect(result).toMatchSnapshot();
   });
 
+  it('should throw an error trying to create a existent key configuration using the repository', async () => {
+    const configuration = createMockedConfiguration({ key: 'my-config' });
+    await expect(async () => {
+      await repository.createConfiguration(configuration);
+    }).rejects.toThrow(new EntityAlreadyExistsError('Configuration with key: my-config already exists'));
+  });
+
   it('should remove a configuration using the repository', async () => {
-    const key = 'MyConfig';
+    const key = 'my-config';
     await repository.deleteConfiguration(key);
 
     await expect(async () => {
       await repository.getConfiguration(key);
-    }).rejects.toThrow(EntityNotFoundError);
+    }).rejects.toThrow(new EntityNotFoundError('Configuration with key: my-config not found'));
   });
 });

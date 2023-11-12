@@ -9,7 +9,7 @@ Configuration {
 
 exports[`A Configurations db repository should get a configuration using the repository 1`] = `
 Configuration {
-  "key": "MyConfig",
+  "key": "my-config",
   "value": "myValue",
 }
 `;
@@ -17,7 +17,7 @@ Configuration {
 exports[`A Configurations db repository should get the configurations using the repository 1`] = `
 [
   Configuration {
-    "key": "MyConfig",
+    "key": "my-config",
     "value": "myValue",
   },
 ]

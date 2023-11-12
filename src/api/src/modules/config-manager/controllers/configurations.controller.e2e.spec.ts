@@ -65,13 +65,13 @@ describe('A Configurations controller (e2e)', () => {
   });
 
   it('should return a configuration', async () => {
-    const response = await request(app.getHttpServer()).get('/configurations/MyConfig').send();
+    const response = await request(app.getHttpServer()).get('/configurations/my-config').send();
     expect(response.status).toBe(200);
     expect(response.body).toMatchSnapshot();
   });
 
   it('should throw an 404 error trying to retrieve a non existent config', async () => {
-    const response = await request(app.getHttpServer()).get('/configurations/MyConfigNotFound').send();
+    const response = await request(app.getHttpServer()).get('/configurations/my-configNotFound').send();
     expect(response.status).toBe(404);
   });
 
@@ -80,5 +80,11 @@ describe('A Configurations controller (e2e)', () => {
     const response = await request(app.getHttpServer()).post('/configurations').send(configuration);
     expect(response.status).toBe(201);
     expect(response.body).toMatchSnapshot();
+  });
+
+  it('should throw an 409 error trying to create an existant key config', async () => {
+    const configuration = createMockedConfiguration({ key: 'my-config' });
+    const response = await request(app.getHttpServer()).post('/configurations').send(configuration);
+    expect(response.status).toBe(409);
   });
 });

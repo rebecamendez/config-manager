@@ -8,4 +8,4 @@ CREATE TABLE "configuration" (
 INSERT INTO
     "configuration" ("key", value)
 VALUES
-    ('MyConfig', 'myValue');
+    ('my-config', 'myValue');
