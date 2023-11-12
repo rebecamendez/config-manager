@@ -64,6 +64,17 @@ describe('A Configurations controller (e2e)', () => {
     expect(response.body).toMatchSnapshot();
   });
 
+  it('should return a configuration', async () => {
+    const response = await request(app.getHttpServer()).get('/configurations/MyConfig').send();
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchSnapshot();
+  });
+
+  it('should throw an 404 error trying to retrieve a non existent config', async () => {
+    const response = await request(app.getHttpServer()).get('/configurations/MyConfigNotFound').send();
+    expect(response.status).toBe(404);
+  });
+
   it('should create a configuration', async () => {
     const configuration = createMockedConfiguration();
     const response = await request(app.getHttpServer()).post('/configurations').send(configuration);
