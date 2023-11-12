@@ -23,6 +23,8 @@ $ yarn install
 $ yarn dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to root api endpoint.
+
 4. [optional] Build the app with `yarn build`
 
 ## How to run linter & tests
