@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ConfigurationsService } from '../services/configurations.service';
 import { ConfigurationResponse } from 'api-contract/configuration.response';
 import { ConfigurationResponseMapper } from './mappers/configuration-response.mapper';
@@ -27,6 +27,12 @@ export class ConfigurationsController {
   public async createConfiguration(@Body() createRequest: ConfigurationRequest): Promise<ConfigurationResponse> {
     const createCommand = ConfigurationRequestMapper.toDomain(createRequest);
     const configuration = await this.configurationService.createConfiguration(createCommand);
+    return ConfigurationResponseMapper.toResponse(configuration);
+  }
+
+  @Put('/:key')
+  public async updateConfiguration(@Param('key') key: string, @Body() updateRequest: ConfigurationRequest): Promise<ConfigurationResponse> {
+    const configuration = await this.configurationService.updateConfiguration(key, updateRequest);
     return ConfigurationResponseMapper.toResponse(configuration);
   }
 

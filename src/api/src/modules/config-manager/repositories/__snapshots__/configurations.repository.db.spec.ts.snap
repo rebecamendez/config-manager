@@ -22,3 +22,10 @@ exports[`A Configurations db repository should get the configurations using the 
   },
 ]
 `;
+
+exports[`A Configurations db repository should update a configuration using the repository 1`] = `
+Configuration {
+  "key": "my-config",
+  "value": "updated value",
+}
+`;

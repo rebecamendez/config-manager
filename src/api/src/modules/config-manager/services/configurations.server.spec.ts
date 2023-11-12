@@ -41,6 +41,17 @@ describe('A Configurations service', () => {
     expect(result).toStrictEqual(configuration);
   });
 
+  it('should update a configuration using the repository', async () => {
+    const key = 'myKey';
+    const expectedConfiguration = createMockedConfiguration({ key });
+
+    configurationsRepository.updateConfiguration.calledWith(key, expectedConfiguration).mockResolvedValue(expectedConfiguration);
+
+    const result = await service.updateConfiguration(key, expectedConfiguration);
+
+    expect(result).toStrictEqual(expectedConfiguration);
+  });
+
   it('should delete a configuration using the repository', async () => {
     const key = 'myKey';
 

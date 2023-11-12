@@ -58,33 +58,53 @@ describe('A Configurations controller (e2e)', () => {
     if (container) await container.stop();
   });
 
-  it('should return configurations', async () => {
+  it('GET: should return configurations', async () => {
     const response = await request(app.getHttpServer()).get('/configurations').send();
     expect(response.status).toBe(200);
     expect(response.body).toMatchSnapshot();
   });
 
-  it('should return a configuration', async () => {
+  it('GET: should return a configuration', async () => {
     const response = await request(app.getHttpServer()).get('/configurations/my-config').send();
     expect(response.status).toBe(200);
     expect(response.body).toMatchSnapshot();
   });
 
-  it('should throw an 404 error trying to retrieve a non existent config', async () => {
+  it('GET: should throw an 404 error trying to retrieve a non existent config', async () => {
     const response = await request(app.getHttpServer()).get('/configurations/my-configNotFound').send();
     expect(response.status).toBe(404);
   });
 
-  it('should create a configuration', async () => {
+  it('POST: should create a configuration', async () => {
     const configuration = createMockedConfiguration();
     const response = await request(app.getHttpServer()).post('/configurations').send(configuration);
     expect(response.status).toBe(201);
     expect(response.body).toMatchSnapshot();
   });
 
-  it('should throw an 409 error trying to create an existant key config', async () => {
+  it('POST: should throw an 409 error trying to create an existent key config', async () => {
     const configuration = createMockedConfiguration({ key: 'my-config' });
     const response = await request(app.getHttpServer()).post('/configurations').send(configuration);
     expect(response.status).toBe(409);
+  });
+
+  it('PUT: should upate a configuration', async () => {
+    const key = 'my-config';
+    const configuration = createMockedConfiguration({ key, value: 'updated value' });
+    const response = await request(app.getHttpServer()).put(`/configurations/my-config`).send(configuration);
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchSnapshot();
+  });
+
+  it('PUT: should throw an 404 error trying to update an non existent key config', async () => {
+    const key = 'my-config-not-found';
+    const configuration = createMockedConfiguration({ key, value: 'updated value' });
+    const response = await request(app.getHttpServer()).put(`/configurations/my-config-not-found`).send(configuration);
+    expect(response.status).toBe(404);
+  });
+
+  it('DELETE: should delete a configuration', async () => {
+    const response = await request(app.getHttpServer()).delete('/configurations/my-config').send();
+    expect(response.status).toBe(200);
   });
 });
