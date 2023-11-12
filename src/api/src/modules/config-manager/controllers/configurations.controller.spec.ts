@@ -44,4 +44,14 @@ describe('A Configurations controller', () => {
 
     expect(result).toMatchObject(expectedConfigurationsResponse);
   });
+
+  it('should delete a configuration using the service', async () => {
+    const key = 'myKey';
+
+    configurationsService.deleteConfiguration.calledWith(key).mockResolvedValue(undefined);
+
+    await controller.deleteConfiguration(key);
+
+    expect(configurationsService.deleteConfiguration).toHaveBeenCalledWith(key);
+  });
 });

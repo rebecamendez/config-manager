@@ -40,4 +40,14 @@ describe('A Configurations service', () => {
     const result = await service.createConfiguration(configuration);
     expect(result).toStrictEqual(configuration);
   });
+
+  it('should delete a configuration using the repository', async () => {
+    const key = 'myKey';
+
+    configurationsRepository.deleteConfiguration.calledWith(key).mockResolvedValue(undefined);
+
+    await service.deleteConfiguration(key);
+
+    expect(configurationsRepository.deleteConfiguration).toHaveBeenCalledWith(key);
+  });
 });
