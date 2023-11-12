@@ -22,6 +22,18 @@ describe('A Configurations controller', () => {
     expect(result).toMatchObject(expectedConfigurationsResponse);
   });
 
+  it('should get a configuration using the service', async () => {
+    const key = 'myKey';
+    const expectedConfiguration = createMockedConfiguration({ key });
+    const expectedConfigurationResponse = createMockedConfigurationResponse({ key });
+
+    configurationsService.getConfiguration.calledWith(key).mockResolvedValue(expectedConfiguration);
+
+    const result = await controller.getConfiguration(key);
+
+    expect(result).toMatchObject(expectedConfigurationResponse);
+  });
+
   it('should create a configuration using the service', async () => {
     const configuration = createMockedConfiguration();
     const expectedConfigurationsResponse = createMockedConfigurationResponse();

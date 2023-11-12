@@ -10,6 +10,10 @@ export class ConfigurationsService {
     return this.configurationsRepository.getConfigurations();
   }
 
+  public async getConfiguration(key: string): Promise<Configuration> {
+    return this.configurationsRepository.getConfiguration(key);
+  }
+
   // TODO: check if config exists and add creation & updated date
   public async createConfiguration(createCommand: Configuration): Promise<Configuration> {
     return this.configurationsRepository.createConfiguration(createCommand);

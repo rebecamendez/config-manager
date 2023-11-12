@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource, EntityNotFoundError } from 'typeorm';
 import { GenericContainer, StartedTestContainer } from 'testcontainers';
 import { ConfigurationsRepositoryDb } from './configurations.repository.db';
 import { createMockedConfiguration } from '../tests/mocks/configurations.mocks';
@@ -48,6 +48,17 @@ describe('A Configurations db repository', () => {
   it('should get the configurations using the repository', async () => {
     const result = await repository.getConfigurations();
     expect(result).toMatchSnapshot();
+  });
+
+  it('should get a configuration using the repository', async () => {
+    const result = await repository.getConfiguration('MyConfig');
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should throw an error trying to retrieve a not existent configuration using the repository', async () => {
+    await expect(async () => {
+      await repository.getConfiguration('MyConfigNotFound');
+    }).rejects.toThrow(EntityNotFoundError);
   });
 
   it('should create a configuration using the repository', async () => {

@@ -2,9 +2,9 @@ import { ConfigurationResponse } from 'api-contract/configuration.response';
 import { Configuration } from '../../domain/configuration';
 
 export const createMockedConfiguration = (customValues?: Partial<Configuration>): Configuration => {
-  const name = customValues?.key || 'foo';
+  const key = customValues?.key || 'foo';
   const value = customValues?.value || 'bar';
-  return new Configuration(name, value);
+  return new Configuration(key, value);
 };
 
 export const createMockedConfigurationResponse = (customValues?: Partial<ConfigurationResponse>): ConfigurationResponse => {

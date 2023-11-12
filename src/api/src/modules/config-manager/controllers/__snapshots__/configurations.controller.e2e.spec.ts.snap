@@ -7,6 +7,13 @@ exports[`A Configurations controller (e2e) should create a configuration 1`] = `
 }
 `;
 
+exports[`A Configurations controller (e2e) should return a configuration 1`] = `
+{
+  "key": "MyConfig",
+  "value": "myValue",
+}
+`;
+
 exports[`A Configurations controller (e2e) should return configurations 1`] = `
 [
   {
