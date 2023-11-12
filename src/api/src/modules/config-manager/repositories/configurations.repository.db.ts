@@ -8,16 +8,22 @@ export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
   public constructor(private readonly dataSource: DataSource) {}
   public async getConfigurations(): Promise<Configuration[]> {
     const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
-    const configurations = await configurationsRepository.find({
+    const configurationsEntity = await configurationsRepository.find({
       order: { key: 'ASC' }
     });
-    return configurations.map(ConfigurationEntityMapper.toDomain);
+    return configurationsEntity.map(ConfigurationEntityMapper.toDomain);
+  }
+
+  public async getConfiguration(key: string): Promise<Configuration> {
+    const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
+    const configurationEntity = await configurationsRepository.findOneOrFail({ where: { key } });
+    return ConfigurationEntityMapper.toDomain(configurationEntity);
   }
 
   public async createConfiguration(createCommand: Configuration): Promise<Configuration> {
     const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
     const configurationEntity = await configurationsRepository.create(createCommand);
-    const configuration = await configurationsRepository.save(configurationEntity);
-    return ConfigurationEntityMapper.toDomain(configuration);
+    const configurationPersistentEntity = await configurationsRepository.save(configurationEntity);
+    return ConfigurationEntityMapper.toDomain(configurationPersistentEntity);
   }
 }
