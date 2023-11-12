@@ -76,6 +76,21 @@ describe('A Configurations db repository', () => {
     }).rejects.toThrow(new EntityAlreadyExistsError('Configuration with key: my-config already exists'));
   });
 
+  it('should update a configuration using the repository', async () => {
+    const key = 'my-config';
+    const configuration = createMockedConfiguration({ key, value: 'updated value' });
+    const result = await repository.updateConfiguration(key, configuration);
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should throw an error trying to upate a non existent configuration using the repository', async () => {
+    const key = 'my-config-not-found';
+    const configuration = createMockedConfiguration({ key, value: 'updated value' });
+    await expect(async () => {
+      await repository.updateConfiguration(key, configuration);
+    }).rejects.toThrow(new EntityAlreadyExistsError('Configuration with key: my-config-not-found not found'));
+  });
+
   it('should remove a configuration using the repository', async () => {
     const key = 'my-config';
     await repository.deleteConfiguration(key);

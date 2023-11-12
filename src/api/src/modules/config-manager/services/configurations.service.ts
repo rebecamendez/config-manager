@@ -18,6 +18,11 @@ export class ConfigurationsService {
     return this.configurationsRepository.createConfiguration(createCommand);
   }
 
+  // TODO: verify key is the same in updateCommand or remove key from command
+  public async updateConfiguration(key: string, updateCommand: Configuration): Promise<Configuration> {
+    return this.configurationsRepository.updateConfiguration(key, updateCommand);
+  }
+
   public async deleteConfiguration(key: string): Promise<void> {
     await this.configurationsRepository.deleteConfiguration(key);
   }

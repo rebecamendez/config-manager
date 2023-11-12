@@ -36,6 +36,17 @@ export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
     return ConfigurationEntityMapper.toDomain(configurationPersistentEntity);
   }
 
+  public async updateConfiguration(key: string, createCommand: Configuration): Promise<Configuration> {
+    const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
+    const foundConfigurationEntity = await configurationsRepository.findOne({ where: { key } });
+
+    if (!foundConfigurationEntity) throw new EntityNotFoundError(`Configuration with key: ${key} not found`);
+
+    const configurationEntity = await configurationsRepository.create(createCommand);
+    const configurationPersistentEntity = await configurationsRepository.save(configurationEntity);
+    return ConfigurationEntityMapper.toDomain(configurationPersistentEntity);
+  }
+
   public async deleteConfiguration(key: string): Promise<void> {
     const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
     await configurationsRepository.delete({ key });
