@@ -1,6 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger } from '@nestjs/common';
 import { Response } from 'express';
-import { EntityNotFoundError } from 'typeorm';
+import { EntityNotFoundError } from 'modules/shared/database/errors/entity-already-exists.error';
+import { EntityAlreadyExistsError } from 'modules/shared/database/errors/entity-not-found.error copy';
 
 @Catch()
 export class ErrorExceptionFilter implements ExceptionFilter {
@@ -8,10 +9,15 @@ export class ErrorExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
-    // Custom Errors
-    if (exception instanceof EntityNotFoundError) {
-      response.status(404).json(exception.message);
-      return;
+    // Custom errors
+    switch (true) {
+      case exception instanceof EntityNotFoundError:
+        response.status(404).json(exception.message);
+        return;
+
+      case exception instanceof EntityAlreadyExistsError:
+        response.status(409).json(exception.message);
+        return;
     }
 
     // Nest.js HTTP errors
