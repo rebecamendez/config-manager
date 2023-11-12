@@ -25,4 +25,9 @@ export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
     const configurationPersistentEntity = await configurationsRepository.save(configurationEntity);
     return ConfigurationEntityMapper.toDomain(configurationPersistentEntity);
   }
+
+  public async deleteConfiguration(key: string): Promise<void> {
+    const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
+    await configurationsRepository.delete({ key });
+  }
 }

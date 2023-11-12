@@ -18,4 +18,8 @@ export class ConfigurationsService {
   public async createConfiguration(createCommand: Configuration): Promise<Configuration> {
     return this.configurationsRepository.createConfiguration(createCommand);
   }
+
+  public async deleteConfiguration(key: string): Promise<void> {
+    await this.configurationsRepository.deleteConfiguration(key);
+  }
 }

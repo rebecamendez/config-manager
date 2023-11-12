@@ -66,4 +66,13 @@ describe('A Configurations db repository', () => {
     const result = await repository.createConfiguration(configuration);
     expect(result).toMatchSnapshot();
   });
+
+  it('should remove a configuration using the repository', async () => {
+    const key = 'MyConfig';
+    await repository.deleteConfiguration(key);
+
+    await expect(async () => {
+      await repository.getConfiguration(key);
+    }).rejects.toThrow(EntityNotFoundError);
+  });
 });
