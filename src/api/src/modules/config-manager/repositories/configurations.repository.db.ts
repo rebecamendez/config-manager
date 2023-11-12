@@ -6,11 +6,10 @@ import { DataSource } from 'typeorm';
 
 export class ConfigurationsRepositoryDb implements ConfigurationsRepository {
   public constructor(private readonly dataSource: DataSource) {}
+
   public async getConfigurations(): Promise<Configuration[]> {
     const configurationsRepository = this.dataSource.getRepository(ConfigurationEntity);
-    const configurationsEntity = await configurationsRepository.find({
-      order: { key: 'ASC' }
-    });
+    const configurationsEntity = await configurationsRepository.find({ order: { key: 'ASC' } });
     return configurationsEntity.map(ConfigurationEntityMapper.toDomain);
   }
 
